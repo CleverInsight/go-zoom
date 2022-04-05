@@ -17,7 +17,7 @@ type Zoom struct {
 // Getting updated bearer token
 func (z *Zoom) GetToken() (string, error) {
 
-	token := "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IjgtWGZkQW5RVDZlR1FzN2JyMHFoanciLCJleHAiOjE2ODA2OTYxMjAsImlhdCI6MTY0OTE1NTQzOH0.tN7uC_acHgBKcuJJxyV86LtTjVs0_dQq9SwV8CfccSY"
+	token := "Bearer "
 	return token, nil
 }
 
