@@ -6,11 +6,12 @@ import (
 )
 
 type CloudRecordings struct {
-	From       string                `json:"from"`
-	To         string                `json:"to"`
-	crcStorage CloudRecordingStorage `json:"cloud_recording_storage"`
+	From                  string `json:"from"`
+	To                    string `json:"to"`
+	CloudRecordingStorage CloudRecordingStorages
 }
-type CloudRecordingStorage []struct {
+type CloudRecordingStorages []CloudRecordingStorage
+type CloudRecordingStorage struct {
 	Date      string `json:"date"`
 	FreeUsage string `json:"free_usage"` //Metric
 	PlanUsage string `json:"plan_usage"` //Metric
@@ -19,7 +20,7 @@ type CloudRecordingStorage []struct {
 
 func (z *Zoom) GetCloudRecording() (CloudRecordings, error) {
 
-	cloudrecordings, err := z.ReqBody("GET", "report/cloud_recording")
+	cloudrecordings, err := z.ReqBody("GET", "/report/cloud_recording")
 	if err != nil {
 		log.Println("Error in GetCloudRecording's Response", err)
 		return CloudRecordings{}, err

@@ -6,22 +6,23 @@ import (
 )
 
 type Billings struct {
-	BillingReports BillingReports
 	Currency       string `json:"currency"`
 	DownloadURL    string `json:"download_url"`
+	BillingReports BillingReports
 }
-
-type BillingReports []struct {
-	EndDate   string `json:"end_date"`
-	ID        string `json:"id"`
-	StartDate string `json:"start_date"`
-	TaxAmt    string `json:"tax_amount"`   //Metric
-	TotalAmt  string `json:"total_amount"` // Metric
-	Type      string `json:"type"`
+type BillingReports []BillingReport
+type BillingReport struct {
+	EndDate     string `json:"end_date"`
+	ID          string `json:"id"`
+	StartDate   string `json:"start_date"`
+	TaxAmount   string `json:"tax_amount"`
+	TotalAmount string `json:"total_amount"`
+	Type        string `json:"type"`
 }
 
 func (z *Zoom) GetBillings() (Billings, error) {
-	billings, err := z.ReqBody("/report/billing", "GET")
+
+	billings, err := z.ReqBody("GET", "/report/billing")
 	if err != nil {
 		log.Println(err)
 		return Billings{}, err

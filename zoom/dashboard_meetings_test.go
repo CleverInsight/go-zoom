@@ -28,20 +28,20 @@ func TestGetMeeting(t *testing.T) {
 				  }
 				],
 				"dept": "",
-				"duration": "",
+				"duration": "15:30",
 				"email": "",
 				"end_time": "",
-				"has_3rd_party_audio": "",
-				"has_archiving": "",
-				"has_pstn": "",
-				"has_recording": "",
-				"has_screen_share": "",
-				"has_sip": "",
-				"has_video": "",
-				"has_voip": "",
-				"id": "",
+				"has_3rd_party_audio": true,
+				"has_archiving": "1",
+				"has_pstn": "0",
+				"has_recording": "0",
+				"has_screen_share": "1",
+				"has_sip": "1",
+				"has_video": "1",
+				"has_voip": "1",
+				"id": 221651,
 				"in_room_participants": "",
-				"participants": "",
+				"participants": 20,
 				"start_time": "",
 				"topic": "",
 				"tracking_fields": [
@@ -70,7 +70,9 @@ func TestGetMeeting(t *testing.T) {
 	}
 
 	assert.NotNil(t, meetings, " response was empty")
-	assert.Equal(t, meetings.PageCount,1, "PageCount is not matching")
-	assert.Equal(t, meetings.PageSize,30, "PageSize is not matching")
+	assert.Equal(t, meetings.PageCount, 1, "PageCount is not matching")
+	assert.Equal(t, meetings.PageSize, 30, "PageSize is not matching")
+	assert.Equal(t, meetings.Meetings[0].Has3RdPartyAudio, true, "Does not have 3rd party audio")
+	assert.Equal(t, meetings.Meetings[0].Duration, "15:30", "Duration does not match")
 
 }

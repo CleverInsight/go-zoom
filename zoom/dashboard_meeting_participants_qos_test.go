@@ -52,7 +52,7 @@ func TestGetMeetingParticipants(t *testing.T) {
 				  "avg_loss": "",
 				  "bitrate": "",
 				  "jitter": "",
-				  "latency": "",
+				  "latency": "20",
 				  "max_loss": "",
 				  "frame_rate": "",
 				  "resolution": ""
@@ -121,7 +121,7 @@ func TestGetMeetingParticipants(t *testing.T) {
 				  "jitter": "",
 				  "latency": "",
 				  "max_loss": "",
-				  "frame_rate": "",
+				  "frame_rate": "20 fps",
 				  "resolution": ""
 				}
 			  }

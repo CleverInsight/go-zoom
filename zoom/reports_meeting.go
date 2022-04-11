@@ -1,3 +1,9 @@
+/* Author : Saranyan Sankrith S
+Created on : 8th April 2022
+Description : This is a Module to Get the meeting API from Reports module,
+Documentation link - https://marketplace.zoom.us/docs/api-reference/zoom-api/methods/#operation/reportMeetings
+*/
+
 package zoom
 
 import (
@@ -17,7 +23,8 @@ type MeetingReports struct {
 	Meetings      Mtings `json:"meetings"`
 	To            string `json:"to"`
 }
-type Mtings []struct {
+type Mtings []Mting
+type Mting struct {
 	Customkeys          CstmKeys  `json:"custom_keys"`
 	Duration            int       `json:"duration"`
 	EndTime             time.Time `json:"end_time"`
@@ -38,13 +45,14 @@ type Mtings []struct {
 	LeaveTime           string    `json:"leave_time"`
 }
 
-type CstmKeys []struct {
+type CstmKeys []CstmKey
+type CstmKey struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
 }
 
 func (z *Zoom) GetReportsMeetings(userId string) (MeetingReports, error) {
-	url := fmt.Sprintf("report/users/%v/meetings", userId)
+	url := fmt.Sprintf("/report/users/%v/meetings", userId)
 	report, err := z.ReqBody("GET", url)
 	if err != nil {
 		log.Println("Error in GetReportsMeetings response", err)

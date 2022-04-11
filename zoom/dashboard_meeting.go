@@ -1,3 +1,8 @@
+/* Author : Anusree TM
+Created on : 8th April 2022
+Description : This is a Module to Get meeting API from Dashboard Module ,
+Documentation link - https://marketplace.zoom.us/docs/api-reference/zoom-api/dashboards/dashboardmeetings
+*/
 package zoom
 
 import (
@@ -14,39 +19,44 @@ type DashBoardMeeting struct {
 	TotalRecords  int    `json:"total_records"`
 	Meetings      Meetings
 }
-type Meetings []struct {
-	Host               string `json:"host"`
+type Meetings []Meeting
+
+type Meeting struct {
+	Host               string `json:"host"` // Metric
 	Dept               string `json:"dept"`
-	Duration           string `json:"duration"`
+	Duration           string `json:"duration"` // Metric of the form mm:ss
 	Email              string `json:"email"`
 	EndTime            string `json:"end_time"`
-	Has3RdPartyAudio   string `json:"has_3rd_party_audio"`
-	HasArchiving       string `json:"has_archiving"`
-	HasPstn            string `json:"has_pstn"`
-	HasRecording       string `json:"has_recording"`
-	HasScreenShare     string `json:"has_screen_share"`
-	HasSip             string `json:"has_sip"`
-	HasVideo           string `json:"has_video"`
-	HasVoip            string `json:"has_voip"`
-	ID                 string `json:"id"`
+	Has3RdPartyAudio   bool   `json:"has_3rd_party_audio"` //Metric
+	HasArchiving       string `json:"has_archiving"`       //Metric
+	HasPstn            string `json:"has_pstn"`            //Metric
+	HasRecording       string `json:"has_recording"`       //Metric
+	HasScreenShare     string `json:"has_screen_share"`    //Metric
+	HasSip             string `json:"has_sip"`             //Metric
+	HasVideo           string `json:"has_video"`           //Metric
+	HasVoip            string `json:"has_voip"`            //Metric
+	ID                 int64  `json:"id"`                  // Metric
 	InRoomParticipants string `json:"in_room_participants"`
-	Participants       string `json:"participants"`
+	Participants       int    `json:"participants"` //Metric
 	StartTime          string `json:"start_time"`
 	Topic              string `json:"topic"`
 	UserType           string `json:"user_type"`
 	UUID               string `json:"uuid"`
-	AudioQuality       string `json:"audio_quality"`
-	VideoQuality       string `json:"video_quality"`
-	ScreenShareQuality string `json:"screen_share_quality"`
-	Key                Key
+	AudioQuality       string `json:"audio_quality"`        //Metric
+	VideoQuality       string `json:"video_quality"`        // Metric
+	ScreenShareQuality string `json:"screen_share_quality"` // Metric
+	Key                keys
 	TrackingFields     TrackingFields
 }
-type Key []struct {
+
+type keys []Key
+type TrackingFields []TrackingField
+type Key struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
 }
 
-type TrackingFields []struct {
+type TrackingField struct {
 	Field string `json:"field"`
 	Value string `json:"value"`
 }

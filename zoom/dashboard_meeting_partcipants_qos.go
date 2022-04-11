@@ -1,3 +1,8 @@
+/* Author : Anusree TM
+Created on : 8th April 2022
+Description : This is a Module to Get the Meeting participants QoS API from Dashboard module  ,
+Documentation link - https://marketplace.zoom.us/docs/api-reference/zoom-api/methods/#operation/dashboardMeetingParticipantQOS
+*/
 package zoom
 
 import (
@@ -20,10 +25,13 @@ type MeetingParticipantsQos struct {
 	Name       string `json:"user_name"`
 	DateTime   string `json:"date_time"`
 	Version    string `json:"version"`
+	UserQos    UserQos
 }
-type UserQos struct {
+type UserQos []Userqos
+type Userqos struct {
 	AsDeviceFromCrc    AsDeviceFromCrc
 	AsInput            AsInput
+	AsOutput           AsOutput
 	AudioDeviceFromCrc AudioDeviceFromCrc
 	AudioDeviceToCrc   AudioDeviceToCrc
 	AudioInput         AudioInput
@@ -34,6 +42,7 @@ type UserQos struct {
 	VideoInput         VideoInput
 	VideoOutput        VideoOutput
 }
+
 type AsDeviceFromCrc struct {
 	AvgLoss string `json:"avg_loss"`
 	Bitrate string `json:"bitrate"`

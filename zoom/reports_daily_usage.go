@@ -6,11 +6,12 @@ import (
 )
 
 type DailyUsage struct {
-	Date  Dates  `json:"dates"`
+	Dates Dates
 	Month string `json:"month"`
 	Year  string `json:"year"`
 }
-type Dates []struct {
+type Dates []Date
+type Date struct {
 	Date           string `json:"date"`
 	MeetingMinutes string `json:"meeting_minutes"`
 	Meetings       string `json:"meetings"`
@@ -19,7 +20,7 @@ type Dates []struct {
 }
 
 func (z *Zoom) GetReportsDailyUsage() (DailyUsage, error) {
-	usage, err := z.ReqBody("GET", "report/daily")
+	usage, err := z.ReqBody("GET", "/report/daily")
 	if err != nil {
 		log.Println("Error in GetReportsDailyUsage response", err)
 		return DailyUsage{}, err

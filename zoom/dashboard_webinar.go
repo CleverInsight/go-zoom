@@ -1,14 +1,7 @@
-/* Author : Anusree TM
-Created on : 4th April 2022
-Description : This is a Module to Get the Plan Usage from the API,
-Documentation link - https://marketplace.zoom.us/docs/api-reference/zoom-api/methods/#operation/dashboardWebinars
-*/
-
 package zoom
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 )
 
@@ -23,7 +16,7 @@ type DashBoardWebinar struct {
 	Duration           string `json:"duration"`
 	Email              string `json:"email"`
 	EndTime            string `json:"end_time"`
-	Has3RdPartyAudio   string `json:"has_3rd_party_audio"`
+	Has3RdPartyAudio   bool   `json:"has_3rd_party_audio"`
 	HasArchiving       string `json:"has_archiving"`
 	HasPstn            string `json:"has_pstn"`
 	HasRecording       string `json:"has_recording"`
@@ -53,8 +46,8 @@ type CustomKeys []struct {
 
 //Return ListWebinar Of Zoom
 func (z *Zoom) ListWebinar() (DashBoardWebinar, error) {
-	url := fmt.Sprintf("/metrics/webinars")
-	response, err := z.ReqBody("GET", url)
+
+	response, err := z.ReqBody("GET", "/metrics/webinars")
 	if err != nil {
 		log.Printf("Error during ListWebinar %v", err)
 		return DashBoardWebinar{}, err

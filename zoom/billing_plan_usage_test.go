@@ -1,8 +1,6 @@
 /* Author : Reethu Reymond
-Created on : 4th April 2022
+Created on : 8th April 2022
 Description : This is a Unit test  module the Billing_plan_usage.go
-Test Cases : To check if the value planusage is not not nil,
-
 */
 
 package zoom

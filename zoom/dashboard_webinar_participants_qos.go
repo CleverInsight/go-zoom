@@ -1,6 +1,6 @@
 /* Author : Anusree TM
 Created on : 4th April 2022
-Description : This is a Module to Get the Plan Usage from the API,
+Description : This is a Module to Get the Webinar Participants QoS from Dashboard Module,
 Documentation link - https://marketplace.zoom.us/docs/api-reference/zoom-api/methods/#operation/dashboardMeetingParticipantQOS
 */
 

@@ -1,6 +1,6 @@
 /* Author : Anusree TM
-Created on : 4th April 2022
-Description : This is a Module to Get the Plan Usage from the API,
+Created on : 8th April 2022
+Description : This is a Module to Get the Webinar APi from reports module,
 Documentation link - https://marketplace.zoom.us/docs/api-reference/zoom-api/methods/#operation/reportWebinarDetails
 */
 
@@ -25,14 +25,16 @@ type Webinar struct {
 	Email            string `json:"user_email"`
 	Name             string `json:"user_name"`
 	UUID             string `json:"uuid"`
-	Keys             Keys
-	Fields           Fields
+	WebinarKeys      WebinarKeys
+	WebinarFields    WebinarFields
 }
-type Keys []struct {
+type WebinarKeys []WebinarKey
+type WebinarKey struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
 }
-type Fields []struct {
+type WebinarFields []WebinarField
+type WebinarField struct {
 	Field string `json:"field"`
 	Value string `json:"value"`
 }

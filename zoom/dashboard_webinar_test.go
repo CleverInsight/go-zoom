@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestListWebinar(t *testing.T) {
+func TestDashListWebinar(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte(`{
@@ -16,7 +16,7 @@ func TestListWebinar(t *testing.T) {
 			"to": "",
 			"next_page_token": "Tva2CuIdTgsv8wAnhyAdU3m06Y2HuLQtlh3",
 			"page_count": 1,
-			"page_size": 30,
+			"page_size": 400,
 			"total_records": 1,
 			"webinars": [
 			  {
@@ -31,7 +31,7 @@ func TestListWebinar(t *testing.T) {
 				"duration": "",
 				"email": "",
 				"end_time": "",
-				"has_3rd_party_audio": "",
+				"has_3rd_party_audio": false,
 				"has_archiving": "",
 				"has_pstn": "",
 				"has_recording": "",
@@ -40,7 +40,7 @@ func TestListWebinar(t *testing.T) {
 				"has_video": "",
 				"has_voip": "",
 				"id": "",
-				"participants": "",
+				"participants": 20,
 				"start_time": "",
 				"topic": "",
 				"user_type": "",
@@ -65,5 +65,7 @@ func TestListWebinar(t *testing.T) {
 	assert.NotNil(t, listwebinar, " response was empty")
 	assert.Contains(t, listwebinar.Dept, "", "Dept not matching")
 	assert.Equal(t, listwebinar.PageCount, 1, "PageCount not been matched")
-	assert.Equal(t, listwebinar.PageSize,30, "Pagesize not been matched")
+	assert.Equal(t, listwebinar.PageSize, 400, "Pagesize not been matched")
+	assert.Equal(t, listwebinar.Has3RdPartyAudio, false, "does not have 3rd party audio")
+
 }
