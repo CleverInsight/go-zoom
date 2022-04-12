@@ -12,25 +12,27 @@ import (
 	"log"
 )
 
+//All  the Structs in the below struct are Metrics
 type PlanUsage struct {
 	PlanBase         PlanBase
-	PlanLargeMeeting PlanLargeMeeting
+	PlanLargeMeeting PlanLargeMeetings
 	PlanRecording    PlanRecording
 	PlanUnited       PlanUnited
-	PlanWebinar      PlanWebinar
+	PlanWebinar      PlanWebinars
 	PlanZoomEvents   PlanZoomEvents
 	PlanZoomRooms    PlanZoomRooms
 }
 type PlanBase struct {
-	Hosts   string `json:"hosts"`
+	Hosts   int    `json:"hosts"`
 	Type    string `json:"type"`
-	Usage   string `json:"usage"`
+	Usage   int    `json:"usage"`
 	Pending int    `json:"pending"`
 }
-type PlanLargeMeeting []struct {
-	Hosts   string `json:"hosts"`
+type PlanLargeMeetings []PlanLargeMeeting
+type PlanLargeMeeting struct {
+	Hosts   int    `json:"hosts"`
 	Type    string `json:"type"`
-	Usage   string `json:"usage"`
+	Usage   int    `json:"usage"`
 	Pending int    `json:"pending"`
 }
 type PlanRecording struct {
@@ -42,28 +44,31 @@ type PlanRecording struct {
 	Type              string `json:"type"`
 }
 type PlanUnited struct {
-	Hosts   string `json:"hosts"`
+	Hosts   int    `json:"hosts"`
 	Name    string `json:"name"`
 	Type    string `json:"type"`
-	Usage   string `json:"usage"`
+	Usage   int    `json:"usage"`
 	Pending int    `json:"pending"`
 }
-type PlanWebinar []struct {
-	Hosts   string `json:"hosts"`
+
+type PlanWebinars []PlanWebinars
+type PlanWebinar struct {
+	Hosts   int    `json:"hosts"`
 	Type    string `json:"type"`
-	Usage   string `json:"usage"`
+	Usage   int    `json:"usage"`
 	Pending int    `json:"pending"`
 }
-type PlanZoomEvents []struct {
-	Hosts   string `json:"hosts"`
+type PlanZoomEvents []PlanZoomEvent
+type PlanZoomEvent struct {
+	Hosts   int    `json:"hosts"`
 	Type    string `json:"type"`
-	Usage   string `json:"usage"`
+	Usage   int    `json:"usage"`
 	Pending int    `json:"pending"`
 }
 type PlanZoomRooms struct {
-	Hosts string `json:"hosts"`
+	Hosts int    `json:"hosts"`
 	Type  string `json:"type"`
-	Usage string `json:"usage"`
+	Usage int    `json:"usage"`
 }
 
 //Return PlanUsage Of Zoom

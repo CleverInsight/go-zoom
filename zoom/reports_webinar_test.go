@@ -55,5 +55,5 @@ func TestGetWebinarDetails(t *testing.T) {
 	assert.NotNil(t, webinar, " results was empty")
 	//assert.NotNil(t, webinar.Keys, "", "Keys are not matching")
 	assert.Equal(t, webinar.ID, "", "ID has not been matched")
-	
+
 }

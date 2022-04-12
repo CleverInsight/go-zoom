@@ -5,18 +5,19 @@ import (
 	"log"
 )
 
+//new users, num of meetings, participant count and total meeting mins).
 type DailyUsage struct {
 	Dates Dates
-	Month string `json:"month"`
-	Year  string `json:"year"`
+	Month int `json:"month"`
+	Year  int `json:"year"`
 }
 type Dates []Date
 type Date struct {
 	Date           string `json:"date"`
-	MeetingMinutes string `json:"meeting_minutes"`
-	Meetings       string `json:"meetings"`
-	NewUsers       string `json:"new_users"`
-	Participants   string `json:"participants"`
+	MeetingMinutes int    `json:"meeting_minutes"` //Metric
+	Meetings       int    `json:"meetings"`        //Metric
+	NewUsers       int    `json:"new_users"`       //Metric
+	Participants   int    `json:"participants"`    //Metric
 }
 
 func (z *Zoom) GetReportsDailyUsage() (DailyUsage, error) {

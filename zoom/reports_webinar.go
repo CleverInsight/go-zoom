@@ -14,14 +14,14 @@ import (
 
 type Webinar struct {
 	Dept             string `json:"dept"`
-	Duration         string `json:"duration"`
+	Duration         int    `json:"duration"` //Metric
 	EndTime          string `json:"end_time"`
-	ID               string `json:"id"`
-	ParticipantCount string `json:"participants_count"`
+	ID               int64  `json:"id"`                 //Metric
+	ParticipantCount int    `json:"participants_count"` //Metric
 	StartTime        string `json:"start_time"`
-	Topic            string `json:"topic"`
-	TotalTime        string `json:"total_minutes"`
-	Type             string `json:"type"`
+	Topic            string `json:"topic"`         //Metric
+	TotalTime        int    `json:"total_minutes"` //Metric
+	Type             int    `json:"type"`          //Metric
 	Email            string `json:"user_email"`
 	Name             string `json:"user_name"`
 	UUID             string `json:"uuid"`

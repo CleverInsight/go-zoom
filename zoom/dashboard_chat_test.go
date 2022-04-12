@@ -18,19 +18,19 @@ func TestGetChat(t *testing.T) {
             "to": "",
             "users": [
               {
-                "audio_sent": "",
-                "code_sippet_sent": "",
+                "audio_sent": ,
+                "code_sippet_sent": ,
                 "email": "",
-                "files_sent": "",
-                "giphys_sent": "",
-                "group_sent": "",
-                "images_sent": "",
-                "p2p_sent": "",
-                "text_sent": "",
-                "total_sent": "",
+                "files_sent": ,
+                "giphys_sent": ,
+                "group_sent": ,
+                "images_sent": ,
+                "p2p_sent": ,
+                "text_sent": ,
+                "total_sent": ,
                 "user_id": "",
                 "user_name": "",
-                "video_sent": ""
+                "video_sent": 
               }
             ]
           }`))

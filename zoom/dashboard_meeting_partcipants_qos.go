@@ -43,6 +43,7 @@ type Userqos struct {
 	VideoOutput        VideoOutput
 }
 
+// All the below structs are Metrics
 type AsDeviceFromCrc struct {
 	AvgLoss string `json:"avg_loss"`
 	Bitrate string `json:"bitrate"`

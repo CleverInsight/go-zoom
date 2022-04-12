@@ -19,7 +19,8 @@ type WebinarParticipants struct {
 	TotalRecords  string `json:"total_records"`
 	Participants  Participts
 }
-type Participts []struct {
+type Participts []Participt
+type Participt struct {
 	Device          string `json:"device"`
 	Domain          string `json:"domain"`
 	HarddiskID      string `json:"harddisk_id"`
@@ -33,7 +34,8 @@ type Participts []struct {
 	UserName        string `json:"user_name"`
 	Webinar_UserQos Webinar_UserQos
 }
-type Webinar_UserQos []struct {
+type Webinar_UserQos []Webinr_UserQos
+type Webinr_UserQos struct {
 	DateTime                   string `json:"date_time"`
 	Version                    string `json:"version"`
 	Webinar_AsDeviceFromCrc    Webinar_AsDeviceFromCrc
@@ -48,6 +50,8 @@ type Webinar_UserQos []struct {
 	Webinar_VideoInput         Webinar_VideoInput
 	Webinar_VideoOutput        Webinar_VideoOutput
 }
+
+// All the below structs are Metrics
 type Webinar_AsDeviceFromCrc struct {
 	AvgLoss string `json:"avg_loss"`
 	Bitrate string `json:"bitrate"`

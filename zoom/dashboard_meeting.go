@@ -28,13 +28,13 @@ type Meeting struct {
 	Email              string `json:"email"`
 	EndTime            string `json:"end_time"`
 	Has3RdPartyAudio   bool   `json:"has_3rd_party_audio"` //Metric
-	HasArchiving       string `json:"has_archiving"`       //Metric
-	HasPstn            string `json:"has_pstn"`            //Metric
-	HasRecording       string `json:"has_recording"`       //Metric
-	HasScreenShare     string `json:"has_screen_share"`    //Metric
-	HasSip             string `json:"has_sip"`             //Metric
-	HasVideo           string `json:"has_video"`           //Metric
-	HasVoip            string `json:"has_voip"`            //Metric
+	HasArchiving       bool   `json:"has_archiving"`       //Metric
+	HasPstn            bool   `json:"has_pstn"`            //Metric
+	HasRecording       bool   `json:"has_recording"`       //Metric
+	HasScreenShare     bool   `json:"has_screen_share"`    //Metric
+	HasSip             bool   `json:"has_sip"`             //Metric
+	HasVideo           bool   `json:"has_video"`           //Metric
+	HasVoip            bool   `json:"has_voip"`            //Metric
 	ID                 int64  `json:"id"`                  // Metric
 	InRoomParticipants string `json:"in_room_participants"`
 	Participants       int    `json:"participants"` //Metric

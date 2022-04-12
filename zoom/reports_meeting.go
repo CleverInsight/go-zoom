@@ -26,16 +26,16 @@ type MeetingReports struct {
 type Mtings []Mting
 type Mting struct {
 	Customkeys          CstmKeys  `json:"custom_keys"`
-	Duration            int       `json:"duration"`
+	Duration            int       `json:"duration"` //Metric
 	EndTime             time.Time `json:"end_time"`
-	ID                  int       `json:"id"`
-	ParticipantsCount   int       `json:"participants_count"`
+	ID                  int       `json:"id"`                 //Metric
+	ParticipantsCount   int       `json:"participants_count"` //Metric
 	SessionKey          string    `json:"session_key"`
 	Source              string    `json:"source"`
 	StartTime           time.Time `json:"start_time"`
 	Topic               string    `json:"topic"`
-	TotalMinutes        int       `json:"total_minutes"`
-	Type                int       `json:"type"`
+	TotalMinutes        int       `json:"total_minutes"` //Metric
+	Type                int       `json:"type"`          //Metric
 	UserEmail           string    `json:"user_email"`
 	UserName            string    `json:"user_name"`
 	UUID                string    `json:"uuid"`

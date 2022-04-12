@@ -13,10 +13,10 @@ type Billings struct {
 type BillingReports []BillingReport
 type BillingReport struct {
 	EndDate     string `json:"end_date"`
-	ID          string `json:"id"`
+	ID          string `json:"id"` //Metric
 	StartDate   string `json:"start_date"`
-	TaxAmount   string `json:"tax_amount"`
-	TotalAmount string `json:"total_amount"`
+	TaxAmount   string `json:"tax_amount"`   //Metric
+	TotalAmount string `json:"total_amount"` //Metric
 	Type        string `json:"type"`
 }
 

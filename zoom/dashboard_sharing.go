@@ -16,15 +16,15 @@ type SharingRecordingDetails struct {
 }
 type Participants_Details []Participant_Details
 type Participant_Details struct {
-	ID       string `json:"id"`
+	ID       string `json:"id"` //Metric
 	UserID   string `json:"user_id"`
 	UserName string `json:"user_name"`
 }
 type Details []Detail
 type Detail struct {
-	Content   string `json:"content"`
-	EndTime   string `json:"end_time"`
-	StartTime string `json:"start_time"`
+	Content   string `json:"content"`    //Metric
+	EndTime   string `json:"end_time"`   //Metric
+	StartTime string `json:"start_time"` //Metric
 }
 
 func (z *Zoom) GetSharingRecordingDetails(webinar_id string) (SharingRecordingDetails, error) {
