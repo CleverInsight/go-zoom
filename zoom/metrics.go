@@ -39,6 +39,7 @@ func (z *Zoom) GetZoomMetrics() (map[string]float64, error) {
 		Endpoint: "https://api.zoom.us/v2/",
 	}
 	ZoomMetrics := make(map[string]float64)
+	// Saranyan Wrote the below
 
 	// Meeting Participants API Client
 	Meetingparticipantsclient, err := client.GetDashboardMeetingParticipants("", "")
@@ -268,6 +269,72 @@ func (z *Zoom) GetZoomMetrics() (map[string]float64, error) {
 	ZoomMetrics["Webinar_VideoOutput - Resolution"] = StringtoFloat(Webinarparticipantsclient.Participants[0].Webinar_UserQos[0].Webinar_VideoOutput.Resolution)
 	ZoomMetrics["Webinar_VideoOutput - FrameRate"] = StringtoFloat(Webinarparticipantsclient.Participants[0].Webinar_UserQos[0].Webinar_VideoOutput.FrameRate)
 
-	return ZoomMetrics, err
+	// Anushree wrote the below
+	Getchatmetrics, err := client.GetDashboardChat()
+	if err != nil {
+		log.Println(err)
+	}
 
+	fmt.Println("Below are the Chat Metrics from Dashboard API")
+	ZoomMetrics["Page Size"] = float64(Getchatmetrics.PageSize)
+	ZoomMetrics["Audio sent"] = float64(Getchatmetrics.Chats[0].AudioSent)
+	ZoomMetrics["CodeSippet Sent"] = float64(Getchatmetrics.Chats[0].CodeSippetSent)
+	ZoomMetrics["File sent"] = float64(Getchatmetrics.Chats[0].FilesSent)
+	ZoomMetrics["Giphys sent"] = float64(Getchatmetrics.Chats[0].GiphysSent)
+	ZoomMetrics["Group sent"] = float64(Getchatmetrics.Chats[0].GroupSent)
+	ZoomMetrics["Image sent"] = float64(Getchatmetrics.Chats[0].ImagesSent)
+	ZoomMetrics["P2P sent"] = float64(Getchatmetrics.Chats[0].P2PSent)
+	ZoomMetrics["Text sent"] = float64(Getchatmetrics.Chats[0].TextSent)
+	ZoomMetrics["Total sent"] = float64(Getchatmetrics.Chats[0].TotalSent)
+	ZoomMetrics["UserID"] = StringtoFloat(Getchatmetrics.Chats[0].UserID)
+	ZoomMetrics["Video sent"] = float64(Getchatmetrics.Chats[0].VideoSent)
+
+	for key, value := range ZoomMetrics {
+		fmt.Printf(key, value)
+	}
+
+	//DashboardSharingRecordingDetails
+	GetSharingRecordingDetails, err := client.GetDashboardSharingRecordingDetails("")
+	if err != nil {
+		log.Println(err)
+	}
+
+	fmt.Println("Below are the SharingRecording Metrics from Dashboard API")
+	ZoomMetrics["UserID"] = StringtoFloat(GetSharingRecordingDetails.Participants[0].ID)
+	ZoomMetrics["EndTime"] = StringtoFloat(GetSharingRecordingDetails.Participants[0].Details[0].EndTime)
+	ZoomMetrics["StartTime"] = StringtoFloat(GetSharingRecordingDetails.Participants[0].Details[0].StartTime)
+	for key, value := range ZoomMetrics {
+		fmt.Printf(key, value)
+	}
+
+	//ReportBilling
+
+	Getreportbilling, err := client.GetReportBillings()
+	if err != nil {
+		log.Println(err)
+	}
+
+	fmt.Println("Below are the Billing Report Metrics from Dashboard API")
+	ZoomMetrics["ID"] = StringtoFloat(Getreportbilling.BillingReport[0].ID)
+	ZoomMetrics["TaxAmount"] = StringtoFloat(Getreportbilling.BillingReport[0].TaxAmount)
+	ZoomMetrics["TotalAmount"] = StringtoFloat(Getreportbilling.BillingReport[0].TotalAmount)
+	for key, value := range ZoomMetrics {
+		fmt.Printf(key, value)
+	}
+
+	//ReportCloudRecording
+
+	GetCloudRecording, err := client.GetReportCloudRecording()
+	if err != nil {
+		log.Println(err)
+	}
+
+	fmt.Println("Below are the cloud record usage Metrics from Dashboard API")
+	ZoomMetrics["FreeUsage"] = StringtoFloat(GetCloudRecording.CloudRecordingStorage[0].FreeUsage)
+	ZoomMetrics["PlanUsage"] = StringtoFloat(GetCloudRecording.CloudRecordingStorage[0].PlanUsage)
+	ZoomMetrics["Usage"] = StringtoFloat(GetCloudRecording.CloudRecordingStorage[0].Usage)
+	for key, value := range ZoomMetrics {
+		fmt.Printf(key, value)
+	}
+	return ZoomMetrics, err
 }

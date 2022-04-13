@@ -18,7 +18,7 @@ type CloudRecordingStorage struct {
 	Usage     string `json:"usage"`      //Metric
 }
 
-func (z *Zoom) GetCloudRecording() (CloudRecordings, error) {
+func (z *Zoom) GetReportCloudRecording() (CloudRecordings, error) {
 
 	cloudrecordings, err := z.ReqBody("GET", "/report/cloud_recording")
 	if err != nil {
