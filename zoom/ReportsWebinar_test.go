@@ -47,7 +47,7 @@ func TestGetReportsWebinarDetails(t *testing.T) {
 		Endpoint: testServer.URL,
 	}
 
-	webinar, err := client.GetWebinarDetails(" ")
+	webinar, err := client.GetReportsWebinarDetails(" ")
 	if err != nil {
 		t.Error(err)
 	}

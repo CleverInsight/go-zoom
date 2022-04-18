@@ -29,7 +29,7 @@ func TestGetReportsCloudRecording(t *testing.T) {
 		Endpoint: testServer.URL,
 	}
 
-	cloud_recording, err := client.GetReportCloudRecording()
+	cloud_recording, err := client.GetReportsCloudRecording()
 	if err != nil {
 		t.Error(err)
 	}

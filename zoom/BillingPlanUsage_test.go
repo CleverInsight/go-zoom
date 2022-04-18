@@ -72,7 +72,7 @@ func TestGetBillingPlanUsage(t *testing.T) {
 	client := &Zoom{
 		Endpoint: testServer.URL,
 	}
-	planusage, err := client.GetPlanUsage(" ")
+	planusage, err := client.GetBillingPlanUsage(" ")
 	if err != nil {
 		t.Error(err)
 	}

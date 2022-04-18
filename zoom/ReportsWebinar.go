@@ -40,7 +40,7 @@ type WebinarField struct {
 }
 
 //Return WebinarDetails Of Zoom
-func (z *Zoom) GetWebinarDetails(webinar_id string) (Webinar, error) {
+func (z *Zoom) GetReportsWebinarDetails(webinar_id string) (Webinar, error) {
 	url := fmt.Sprintf("/report/webinars/%v", webinar_id)
 	response, err := z.ReqBody("GET", url)
 	if err != nil {

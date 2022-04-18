@@ -35,7 +35,7 @@ func TestGetDashboardSharingRecordingDetails(t *testing.T) {
 	client := &Zoom{
 		Endpoint: testServer.URL,
 	}
-	dashboard_sharing, err := client.GetSharingRecordingDetails("")
+	dashboard_sharing, err := client.GetDashboardSharingRecordingDetails("")
 	if err != nil {
 		t.Error(err)
 	}

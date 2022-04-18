@@ -20,7 +20,7 @@ type BillingReports struct {
 	Type        string `json:"type"`
 }
 
-func (z *Zoom) GetReportBillings() (Billings, error) {
+func (z *Zoom) GetReportsBillings() (Billings, error) {
 
 	billings, err := z.ReqBody("GET", "/report/billing")
 	if err != nil {

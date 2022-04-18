@@ -1,3 +1,8 @@
+/* Author : Bastin Robin
+Created on : 5th April 2022
+Description : This is a  the main module containing the Zoom Client,
+
+*/
 package zoom
 
 import (

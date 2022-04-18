@@ -27,7 +27,7 @@ type Detail struct {
 	StartTime string `json:"start_time"` //Metric
 }
 
-func (z *Zoom) GetSharingRecordingDetails(webinar_id string) (SharingRecordingDetails, error) {
+func (z *Zoom) GetDashboardSharingRecordingDetails(webinar_id string) (SharingRecordingDetails, error) {
 
 	url := fmt.Sprintf("/metrics/webinars/%v/participants/sharing", webinar_id)
 	details, err := z.ReqBody("GET", url)

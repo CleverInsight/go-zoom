@@ -23,15 +23,17 @@ type PlanUsage struct {
 	PlanZoomRooms    PlanZoomRooms    `json:"plan_zoom_rooms"`
 }
 type PlanBase struct {
-	Hosts   string `json:"hosts"`
+	Hosts   int    `json:"hosts"`
 	Type    string `json:"type"`
-	Usage   string `json:"usage"`
+	Usage   int    `json:"usage"`
 	Pending int    `json:"pending"`
 }
-type PlanLargeMeeting []struct {
-	Hosts   string `json:"hosts"`
+type PlanLargeMeeting []BillingPlanLargeMeeting
+
+type BillingPlanLargeMeeting struct {
+	Hosts   int    `json:"hosts"`
 	Type    string `json:"type"`
-	Usage   string `json:"usage"`
+	Usage   int    `json:"usage"`
 	Pending int    `json:"pending"`
 }
 type PlanRecording struct {
@@ -43,32 +45,36 @@ type PlanRecording struct {
 	Type              string `json:"type"`
 }
 type PlanUnited struct {
-	Hosts   string `json:"hosts"`
+	Hosts   int    `json:"hosts"`
 	Name    string `json:"name"`
 	Type    string `json:"type"`
-	Usage   string `json:"usage"`
+	Usage   int    `json:"usage"`
 	Pending int    `json:"pending"`
 }
-type PlanWebinar []struct {
-	Hosts   string `json:"hosts"`
+type PlanWebinar []BillingPlanWebinar
+
+type BillingPlanWebinar struct {
+	Hosts   int    `json:"hosts"`
 	Type    string `json:"type"`
-	Usage   string `json:"usage"`
+	Usage   int    `json:"usage"`
 	Pending int    `json:"pending"`
 }
-type PlanZoomEvents []struct {
-	Hosts   string `json:"hosts"`
+type PlanZoomEvents []BillingPlanZoomEvents
+
+type BillingPlanZoomEvents struct {
+	Hosts   int    `json:"hosts"`
 	Type    string `json:"type"`
-	Usage   string `json:"usage"`
+	Usage   int    `json:"usage"`
 	Pending int    `json:"pending"`
 }
 type PlanZoomRooms struct {
-	Hosts string `json:"hosts"`
+	Hosts int    `json:"hosts"`
 	Type  string `json:"type"`
-	Usage string `json:"usage"`
+	Usage int    `json:"usage"`
 }
 
 //Return PlanUsage Of Zoom
-func (z *Zoom) GetPlanUsage(account_id string) (PlanUsage, error) {
+func (z *Zoom) GetBillingPlanUsage(account_id string) (PlanUsage, error) {
 
 	url := fmt.Sprintf("/accounts/%v/plans/usage", account_id)
 	response, err := z.ReqBody("GET", url)

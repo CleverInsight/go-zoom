@@ -29,7 +29,7 @@ func TestGetReportBillings(t *testing.T) {
 	client := &Zoom{
 		Endpoint: testServer.URL,
 	}
-	billingreport, err := client.GetReportBillings()
+	billingreport, err := client.GetReportsBillings()
 	if err != nil {
 		t.Error(err)
 	}

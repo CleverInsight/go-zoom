@@ -289,12 +289,8 @@ func (z *Zoom) GetZoomMetrics() (map[string]float64, error) {
 	ZoomMetrics["UserID"] = StringtoFloat(Getchatmetrics.Chats[0].UserID)
 	ZoomMetrics["Video sent"] = float64(Getchatmetrics.Chats[0].VideoSent)
 
-	for key, value := range ZoomMetrics {
-		fmt.Printf(key, value)
-	}
-
 	//DashboardSharingRecordingDetails
-	GetSharingRecordingDetails, err := client.GetDashboardSharingRecordingDetails("")
+	GetSharingRecordingDetails, err := client.GetDashboardSharingRecordingDetails(" ")
 	if err != nil {
 		log.Println(err)
 	}
@@ -303,38 +299,94 @@ func (z *Zoom) GetZoomMetrics() (map[string]float64, error) {
 	ZoomMetrics["UserID"] = StringtoFloat(GetSharingRecordingDetails.Participants[0].ID)
 	ZoomMetrics["EndTime"] = StringtoFloat(GetSharingRecordingDetails.Participants[0].Details[0].EndTime)
 	ZoomMetrics["StartTime"] = StringtoFloat(GetSharingRecordingDetails.Participants[0].Details[0].StartTime)
-	for key, value := range ZoomMetrics {
-		fmt.Printf(key, value)
-	}
 
 	//ReportBilling
 
-	Getreportbilling, err := client.GetReportBillings()
+	Getreportbilling, err := client.GetReportsBillings()
 	if err != nil {
 		log.Println(err)
 	}
 
-	fmt.Println("Below are the Billing Report Metrics from Dashboard API")
+	fmt.Println("Below are the Billing Metrics from Reports API")
 	ZoomMetrics["ID"] = StringtoFloat(Getreportbilling.BillingReport[0].ID)
 	ZoomMetrics["TaxAmount"] = StringtoFloat(Getreportbilling.BillingReport[0].TaxAmount)
 	ZoomMetrics["TotalAmount"] = StringtoFloat(Getreportbilling.BillingReport[0].TotalAmount)
-	for key, value := range ZoomMetrics {
-		fmt.Printf(key, value)
-	}
 
 	//ReportCloudRecording
 
-	GetCloudRecording, err := client.GetReportCloudRecording()
+	GetCloudRecording, err := client.GetReportsCloudRecording()
 	if err != nil {
 		log.Println(err)
 	}
 
-	fmt.Println("Below are the cloud record usage Metrics from Dashboard API")
+	fmt.Println("Below are the Cloud Recording Metrics from Reports API")
 	ZoomMetrics["FreeUsage"] = StringtoFloat(GetCloudRecording.CloudRecordingStorage[0].FreeUsage)
 	ZoomMetrics["PlanUsage"] = StringtoFloat(GetCloudRecording.CloudRecordingStorage[0].PlanUsage)
 	ZoomMetrics["Usage"] = StringtoFloat(GetCloudRecording.CloudRecordingStorage[0].Usage)
-	for key, value := range ZoomMetrics {
-		fmt.Printf(key, value)
+
+	//planusage
+	Getplanusagemetrics, err := client.GetBillingPlanUsage("")
+	if err != nil {
+		log.Println(err)
 	}
+
+	fmt.Println("Below are the PlanUsage Metrics from Billing API")
+
+	ZoomMetrics["PlanBase - Hosts"] = float64(Getplanusagemetrics.PlanBase.Hosts)
+	ZoomMetrics["PlanBase - Usage"] = float64(Getplanusagemetrics.PlanBase.Usage)
+	ZoomMetrics["PlanBase - Pending"] = float64(Getplanusagemetrics.PlanBase.Pending)
+	ZoomMetrics["PlanLargeMeeting - Hosts"] = float64(Getplanusagemetrics.PlanLargeMeeting[0].Hosts)
+	ZoomMetrics["PlanLargeMeeting - Usage"] = float64(Getplanusagemetrics.PlanLargeMeeting[0].Usage)
+	ZoomMetrics["PlanLargeMeeting - Pending"] = float64(Getplanusagemetrics.PlanLargeMeeting[0].Pending)
+	ZoomMetrics["PlanUnited - Hosts"] = float64(Getplanusagemetrics.PlanUnited.Hosts)
+	ZoomMetrics["PlanUnited - Usage"] = float64(Getplanusagemetrics.PlanUnited.Usage)
+	ZoomMetrics["PlanUnited - Pending"] = float64(Getplanusagemetrics.PlanUnited.Pending)
+	ZoomMetrics["PlanWebinar - Hosts"] = float64(Getplanusagemetrics.PlanWebinar[0].Hosts)
+	ZoomMetrics["PlanWebinar - Hosts"] = float64(Getplanusagemetrics.PlanWebinar[0].Usage)
+	ZoomMetrics["PlanWebinar - Hosts"] = float64(Getplanusagemetrics.PlanWebinar[0].Pending)
+	ZoomMetrics["PlanZoomEvents - Hosts"] = float64(Getplanusagemetrics.PlanZoomEvents[0].Hosts)
+	ZoomMetrics["PlanZoomEvents - Hosts"] = float64(Getplanusagemetrics.PlanZoomEvents[0].Usage)
+	ZoomMetrics["PlanZoomEvents - Hosts"] = float64(Getplanusagemetrics.PlanZoomEvents[0].Pending)
+	ZoomMetrics["PlanZoomRooms - Hosts"] = float64(Getplanusagemetrics.PlanZoomRooms.Hosts)
+	ZoomMetrics["PlanZoomRooms - Hosts"] = float64(Getplanusagemetrics.PlanZoomRooms.Usage)
+
+	//reportsmeetings
+	Getreportsmeetingsmetrics, err := client.GetReportsMeetings(" ")
+	if err != nil {
+		log.Println(err)
+	}
+
+	fmt.Println("Below are the Meetings Metrics from Reports  API")
+	ZoomMetrics["RepMeetings - Duration"] = float64(Getreportsmeetingsmetrics.RepMeetings[0].Duration)
+	ZoomMetrics["RepMeetings - ID"] = float64(Getreportsmeetingsmetrics.RepMeetings[0].ID)
+	ZoomMetrics["RepMeetings - ParticipantsCount"] = float64(Getreportsmeetingsmetrics.RepMeetings[0].ParticipantsCount)
+	ZoomMetrics["RepMeetings - TotalMinutes"] = float64(Getreportsmeetingsmetrics.RepMeetings[0].TotalMinutes)
+	ZoomMetrics["RepMeetings - Type"] = float64(Getreportsmeetingsmetrics.RepMeetings[0].Type)
+
+	//webinardetails
+	GetReportsWebinarDetailsMetrics, err := client.GetReportsWebinarDetails("")
+	if err != nil {
+		log.Println(err)
+	}
+	fmt.Println("Below are the Webinar Metrics from Reports API")
+
+	ZoomMetrics["GetReportsWebinarDetailsMetrics - Duration"] = float64(GetReportsWebinarDetailsMetrics.Duration)
+	ZoomMetrics["GetReportsWebinarDetailsMetrics - ID"] = StringtoFloat(GetReportsWebinarDetailsMetrics.ID)
+	ZoomMetrics["GetReportsWebinarDetailsMetrics - Topic"] = StringtoFloat(GetReportsWebinarDetailsMetrics.Topic)
+	ZoomMetrics["GetReportsWebinarDetailsMetrics - TotalTime"] = float64(GetReportsWebinarDetailsMetrics.TotalTime)
+	ZoomMetrics["GetReportsWebinarDetailsMetrics - Type"] = float64(GetReportsWebinarDetailsMetrics.Type)
+
+	//reportdailyusage
+	GetReportDailyUsageMetrics, err := client.GetReportsDailyUsage()
+	if err != nil {
+		log.Println(err)
+	}
+
+	fmt.Println("Below are the Daily Usage Metrics from Report  API")
+	ZoomMetrics["GetReportDailyUsageMetrics - MeetingMinutes"] = StringtoFloat(GetReportDailyUsageMetrics.Dates[0].MeetingMinutes)
+	ZoomMetrics["GetReportDailyUsageMetrics - Meetings"] = StringtoFloat(GetReportDailyUsageMetrics.Dates[0].Meetings)
+	ZoomMetrics["GetReportDailyUsageMetrics - NewUsers"] = StringtoFloat(GetReportDailyUsageMetrics.Dates[0].NewUsers)
+	ZoomMetrics["GetReportDailyUsageMetrics - Participants"] = StringtoFloat(GetReportDailyUsageMetrics.Dates[0].Participants)
+
 	return ZoomMetrics, err
 }
